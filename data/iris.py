@@ -11,8 +11,11 @@ class IrisDataset(Dataset):
     
     def __getitem__(self, index):
         item = self.data.iloc[index].values
-        return (float(item[0:4]), int(item[4]))
+        # return (float(item[0:4]), int(item[4]))
         # return (item[0:4].astype(np.float32), item[4].astype(np.int))
+        features = item[:4].astype(np.float32)
+        label = int(item[4])
+        return features, label
 
     def __len__(self):
         return self.data.shape[0]
